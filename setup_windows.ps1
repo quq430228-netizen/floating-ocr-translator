@@ -24,5 +24,9 @@ if (Test-Path $iconPath) {
 }
 $sc.Save()
 
+$startupDir = [Environment]::GetFolderPath("Startup")
+$startupLnk = Join-Path $startupDir "翻译悬浮窗.lnk"
+Copy-Item -LiteralPath $lnkPath -Destination $startupLnk -Force
+
 Start-Process -FilePath "wscript.exe" -ArgumentList "`"$PSScriptRoot\启动翻译悬浮窗.vbs`""
 Write-Host "安装完成！桌面已生成「翻译悬浮窗」快捷方式，悬浮窗已启动。" -ForegroundColor Green
